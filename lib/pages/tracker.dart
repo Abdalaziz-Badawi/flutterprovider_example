@@ -17,45 +17,48 @@ class Tracker extends StatefulWidget {
 class _TrackerState extends State<Tracker> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
+    return Scaffold(      
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Tracker Page'),
+        title: Text('Tracker Page', style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center,), centerTitle: true,
 
         actions: [
           IconButton(
             icon: const Icon(Icons.home),
             onPressed: () {
-              Navigator.pushNamed(context, '/homepage');
+              Navigator.pushReplacementNamed(context, '/homepage');
             },
           ),
         ],
-
       ),
 
       body: Column(
         children: [
-          const Text('Tracker Page'),
-          const Text('The latest number reached in the homepage will be mirrored here!'),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            
+            children: [
+              Container(
+                height: 300,
+                color: Colors.transparent,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
 
-          // You can add a Consumer widget here to listen to changes in the provider
-          // Consumer<TrackerProvider>(
-          //   builder: (context, trackerProvider, child) {
-          //     return Text(
-          //       'Tracked Number: ${trackerProvider.trackedNumber}',
-          //       style: TextStyle(fontSize: 24),
-          //     );
-          //   },
-          // ),
 
-          Text(
-            context.watch<TrackerProvider>().trackedNumber.toString(),
-            style: const TextStyle(fontSize: 24),
-            textAlign: TextAlign.center,
+                children: [                  
+                  Text(
+                    context.watch<TrackerProvider>().trackedNumber.toString(),
+                    style: const TextStyle(color: Color.fromARGB(255, 255, 78, 78), fontSize: 48, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  const Text('You can do better!', style: TextStyle(color: Color.fromARGB(255, 32, 31, 31), fontSize: 13, fontWeight: FontWeight.bold)),
+
+                ],
+              )
+
+            ],
           ),
-
-
         ],
       ),
     );
