@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text('Homepage', style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center,), centerTitle: true,
 
         actions: [
           IconButton(

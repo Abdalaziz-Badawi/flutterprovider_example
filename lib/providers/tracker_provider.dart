@@ -34,6 +34,9 @@ class TrackerProvider extends ChangeNotifier {
 
   }
 
-
+  void resetTracker() {
+    trackedNumber = 0;
+    notifyListeners();
+  }
 
 }

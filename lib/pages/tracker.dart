@@ -17,10 +17,13 @@ class Tracker extends StatefulWidget {
 class _TrackerState extends State<Tracker> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(      
+    return Scaffold(  
+
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Tracker Page', style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center,), centerTitle: true,
+        title: Text('Tracker', style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center,), centerTitle: true,
 
         actions: [
           IconButton(
@@ -32,16 +35,15 @@ class _TrackerState extends State<Tracker> {
         ],
       ),
 
-      body: Column(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            
-            children: [
-              Container(
-                height: 300,
-                color: Colors.transparent,
-              ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+              // Container(
+              //   height: 300,
+              //   color: Colors.transparent,
+              // ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
 
@@ -49,18 +51,30 @@ class _TrackerState extends State<Tracker> {
                 children: [                  
                   Text(
                     context.watch<TrackerProvider>().trackedNumber.toString(),
-                    style: const TextStyle(color: Color.fromARGB(255, 255, 78, 78), fontSize: 48, fontWeight: FontWeight.bold),
+                    style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 48, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
-                  const Text('You can do better!', style: TextStyle(color: Color.fromARGB(255, 32, 31, 31), fontSize: 13, fontWeight: FontWeight.bold)),
+                  const Text('You can do better!', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 13, fontWeight: FontWeight.bold)),
 
                 ],
               )
 
             ],
           ),
-        ],
+        
       ),
+
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<TrackerProvider>().resetTracker();
+        },
+        tooltip: 'Reset',
+        child: const Icon(Icons.refresh),
+      ),
+
+
+      
     );
   }
 }
