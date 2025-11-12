@@ -14,10 +14,7 @@ import 'package:flutter/material.dart';
 //     notifyListeners();
 //   }
 
-
 // }
-
-
 
 class TrackerProvider extends ChangeNotifier {
   int trackedNumber = 0;
@@ -30,13 +27,10 @@ class TrackerProvider extends ChangeNotifier {
   void incrementTracker() {
     trackedNumber++;
     notifyListeners();
-
-
   }
 
   void resetTracker() {
     trackedNumber = 0;
     notifyListeners();
   }
-
 }
