@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
 
-// class TrackerProvider extends ChangeNotifier {
-//   int trackedNumber ;
-
-//   TrackerProvider({
-//     this.trackedNumber = 0,
-//   });
-
-//   void updateTracker({
-//     required int newNumber,
-//   }) {
-//     trackedNumber = newNumber;
-//     notifyListeners();
-//   }
-
-// }
-
 class TrackerProvider extends ChangeNotifier {
   int trackedNumber = 0;
 
@@ -27,6 +11,19 @@ class TrackerProvider extends ChangeNotifier {
   void incrementTracker() {
     trackedNumber++;
     notifyListeners();
+
+    // if (trackedNumber == 10) {
+    //   trackedNumber =  trackedNumber + 25;
+    //   notifyListeners();
+    // }    else if (trackedNumber == 100) {
+    //   trackedNumber = trackedNumber + 50;
+    //   notifyListeners();
+    // }    else {
+    //   trackedNumber = trackedNumber + 75;
+    //   notifyListeners();
+    // }
+
+
   }
 
   void resetTracker() {

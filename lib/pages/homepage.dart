@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_1/providers/tracker_provider.dart';
-
+import 'package:flutter_application_1/assets/components/floating_appbar.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -18,16 +18,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(
-          'Homepage',
-          style: TextStyle(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-        centerTitle: true,
-
+    var scaffold = Scaffold(
+      appBar: FloatingAppbar(
+        backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
+        key: const Key('floating_appbar_homepage'),
+        title: 'Homepage',
         actions: [
           IconButton(
             icon: const Icon(Icons.track_changes),
@@ -37,6 +32,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+      // appBar: AppBar(
+      //   // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      //   title: Text('Homepage'),
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.track_changes),
+      //       onPressed: () {
+      //         Navigator.pushReplacementNamed(context, '/tracker');
+      //       },
+      //     ),
+      //   ],
+      // ),
 
       body: Center(
         child: Column(
@@ -50,11 +57,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _incrementCounter();
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(content: Text('Value Incremented by 1')),
+          // );
+        },
+
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+        icon: const Icon(Icons.add),
+        label: const Text('Increment'),
+      ),
     );
+    return scaffold;
   }
 }

@@ -13,15 +13,12 @@ class _TrackerState extends State<Tracker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(
-          'Tracker',
-          style: TextStyle(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
+        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('Tracker'),
+
         centerTitle: true,
 
         actions: [
@@ -47,19 +44,34 @@ class _TrackerState extends State<Tracker> {
               mainAxisAlignment: MainAxisAlignment.center,
 
               children: [
-                Text(
-                  context.watch<TrackerProvider>().trackedNumber.toString(),
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
+                // Text(
+                //   context.watch<TrackerProvider>().trackedNumber.toString(),
+                //   style: const TextStyle(
+                //     color: Color.fromARGB(255, 255, 0, 0),
+                //     fontSize: 48,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                //   textAlign: TextAlign.center,
+                // ),
+
+                Consumer<TrackerProvider>(
+                  builder: (context, trackerProvider, child) {
+                    return Text(
+                      trackerProvider.trackedNumber.toString(),
+                      style: const TextStyle(
+                        // color: Color.fromARGB(255, 29, 88, 213),
+                        color: Colors.black,
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    );
+                  },
                 ),
                 const Text(
                   'You can do better!',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: Colors.black,
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
@@ -73,9 +85,14 @@ class _TrackerState extends State<Tracker> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.read<TrackerProvider>().resetTracker();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Counter Reset to 0')),
+          );
         },
         tooltip: 'Reset',
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
         child: const Icon(Icons.refresh),
+
       ),
     );
   }
